@@ -10,8 +10,9 @@ public class playerStats : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Keypad1))
+        if (Input.GetKeyDown(KeyCode.P))
         {
+            Debug.Log("P KEY HAS BEEN PRESSED");
             PlayerAttack();
         }
     }
@@ -49,6 +50,7 @@ public class playerStats : MonoBehaviour
 
             if (enemyHealth != null)
             {
+                Debug.Log("Enemy is being shot at!");
                 enemyHealth.TakeDamage(damage); // Enemy takes damage from the takedamage function above
             }
         }
