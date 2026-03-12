@@ -41,9 +41,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (Time.time >= lastAttackInstance + attackCooldown)
         {
-<<<<<<< HEAD
             Debug.Log("The spooky EnemyAI of Melee Class is probably attacking! oo very scawy THIS IS A TEST MESSAGE");
-=======
             PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
 
             if (playerHealth != null)
@@ -51,7 +49,6 @@ public class MeleeEnemy : MonoBehaviour
                 playerHealth.TakeDamage(damage);
             }
             Debug.Log("The EnemyAI of Melee Class is Attacking! THIS IS A TEST MESSAGE");
->>>>>>> feature/weapon
 
             lastAttackInstance = Time.time;
         }
