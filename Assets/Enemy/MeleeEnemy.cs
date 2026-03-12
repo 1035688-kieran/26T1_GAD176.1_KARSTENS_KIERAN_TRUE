@@ -39,7 +39,7 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (Time.time >= lastAttackInstance + attackCooldown)
         {
-            Debug.Log("The EnemyAI of Melee Class is Attacking! THIS IS A TEST MESSAGE");
+            Debug.Log("The spooky EnemyAI of Melee Class is probably attacking! oo very scawy THIS IS A TEST MESSAGE");
 
             lastAttackInstance = Time.time;
         }
