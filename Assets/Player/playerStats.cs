@@ -27,7 +27,7 @@ public class playerStats : MonoBehaviour
     public void TakeDamage(int damage) // Currently public but we will see what happens, if it ends up just being for the player it will stay public
     {
         curHealth -= damage;
-        Debug.Log(" <color = red>Player has taken damage, oh noes! very sad :((( current healthers is at uhhh" + curHealth + "</color>"); // Thank you for the colour robert!!!!!!!!!!!! 
+        Debug.Log(" <color = red>Player has taken damage, oh noes! very sad :((( current healthers is at uhhh" + curHealth); // Thank you for the colour robert!!!!!!!!!!!! 
 
         if (curHealth <= 0)
         {
