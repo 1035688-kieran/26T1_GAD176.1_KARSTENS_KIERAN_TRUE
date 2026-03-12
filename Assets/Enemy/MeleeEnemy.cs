@@ -28,6 +28,8 @@ public class MeleeEnemy : MonoBehaviour
         {
             Attack();
         }
+
+        FacePlayer();
     }
 
     private void ChasePlayer()
@@ -39,9 +41,30 @@ public class MeleeEnemy : MonoBehaviour
     {
         if (Time.time >= lastAttackInstance + attackCooldown)
         {
+<<<<<<< HEAD
             Debug.Log("The spooky EnemyAI of Melee Class is probably attacking! oo very scawy THIS IS A TEST MESSAGE");
+=======
+            PlayerHealth playerHealth = player.GetComponent<PlayerHealth>();
+
+            if (playerHealth != null)
+            {
+                playerHealth.TakeDamage(damage);
+            }
+            Debug.Log("The EnemyAI of Melee Class is Attacking! THIS IS A TEST MESSAGE");
+>>>>>>> feature/weapon
 
             lastAttackInstance = Time.time;
+        }
+    }
+
+    private void FacePlayer()
+    {
+        Vector3 direction = player.position - transform.position;
+        direction.y = 0;
+
+        if (direction != Vector3.zero)
+        {
+            transform.rotation = Quaternion.LookRotation(direction);
         }
     }
 
