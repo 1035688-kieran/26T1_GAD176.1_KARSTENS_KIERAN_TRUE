@@ -7,10 +7,8 @@ public class MeleeEnemy : MonoBehaviour
     [SerializeField] private float attackRange = 5f; // How far the enemy can attack
     [SerializeField] private float attackCooldown = 2.5f; // Time being attacks
     [SerializeField] private int damage = 10; // Damage the enemy does to the player
-
     [SerializeField] private float lastAttackInstance; // Last time that the enemy attacked
     [SerializeField] public Transform player;
-
     [SerializeField] public int maxEnemyHealth = 50;
     [SerializeField] public int curEnemyHealth;
 
