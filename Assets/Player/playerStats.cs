@@ -7,13 +7,19 @@ public class playerStats : MonoBehaviour
     [SerializeField] private int curHealth; // Variable controlling the current health of the player
     [SerializeField] private float attackRange; // Range of attack for player
     [SerializeField] private int damage;
+    [SerializeField] public bool hasSword; // This is public so that Sword script can access it.
 
-    private void Update()
+    public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.P))
+            if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("P KEY HAS BEEN PRESSED");
-            PlayerAttack();
+            Debug.Log("ATTACK KEY HAS BEEN PRESSED");
+            if (hasSword)
+            {
+                PlayerAttack();
+            }
+            else
+                Debug.Log("You need a weapon");
         }
     }
 

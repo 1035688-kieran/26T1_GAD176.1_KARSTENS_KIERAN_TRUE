@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] private bool isEquipped;
+    [SerializeField] private int weaponDamage;
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    private void OnTriggerEnter(Collider other)
     {
-        isEquipped = false;
-}
+        MeleeEnemy enemy = other.GetComponent<MeleeEnemy>();
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+        if (enemy != null )
+        {
+            enemy.TakeDamage(weaponDamage);
+        }
     }
+
+    
+
 }
