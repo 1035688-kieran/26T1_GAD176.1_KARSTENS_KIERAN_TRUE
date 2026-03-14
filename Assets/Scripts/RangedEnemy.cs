@@ -66,6 +66,10 @@ public class RangedEnemy : MonoBehaviour
     public void TakeDamage(int damage)
     {
         curEnemyHealth -= damage;
+        {
+            Debug.Log("Enemy took damage: " + damage);
+        }
+
         if (curEnemyHealth <= 0)
         {
             Destroy(gameObject);

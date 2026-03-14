@@ -7,19 +7,33 @@ public class playerStats : MonoBehaviour
     [SerializeField] private int curHealth; // Variable controlling the current health of the player
     [SerializeField] private float attackRange; // Range of attack for player
     [SerializeField] private int damage;
-    [SerializeField] public bool hasSword; // This is public so that Sword script can access it.
+    [SerializeField] public bool hasSword = false; // This is public so that Sword script can access it.
+    [SerializeField] public Weapon equippedWeapon;
 
-    public void Update()
+    void Update()
     {
-            if (Input.GetKeyDown(KeyCode.P))
+        if (hasSword && Input.GetMouseButtonDown(0))
         {
-            Debug.Log("ATTACK KEY HAS BEEN PRESSED");
-            if (hasSword)
-            {
-                PlayerAttack();
-            }
-            else
-                Debug.Log("You need a weapon");
+            Attack();
+        }
+    }
+
+    void Attack()
+    {
+        Debug.Log("Player is now attacking");
+
+        if (equippedWeapon != null)
+        {
+            equippedWeapon.EnableDamage(); // Damage is enabled in the Weapon script, this should allow me easily to extend this to the bow, not just the sword
+            Invoke(nameof(StopAttack), 0.3f); // This is so attacks dont stack
+        }
+    }
+
+    void StopAttack()
+    {
+        if (equippedWeapon != null)
+        {
+            equippedWeapon.DisableDamage();
         }
     }
 
