@@ -3,12 +3,16 @@ using UnityEngine;
 
 public class playerStats : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 100; // Max health of the PLAYER, might use this script for inheritence
-    [SerializeField] private int curHealth; // Variable controlling the current health of the player
-    [SerializeField] private float attackRange; // Range of attack for player
-    [SerializeField] private int damage;
-    [SerializeField] public bool hasSword = false; // This is public so that Sword script can access it.
-    [SerializeField] public Weapon equippedWeapon;
+    [SerializeField] private int maxHealth = 100;
+    private int curHealth;
+
+    public bool hasSword = false;
+    public Weapon equippedWeapon;
+
+    void Start()
+    {
+        curHealth = maxHealth;
+    }
 
     void Update()
     {
@@ -20,12 +24,12 @@ public class playerStats : MonoBehaviour
 
     void Attack()
     {
-        Debug.Log("Player is now attacking");
+        Debug.Log("Player attacking");
 
         if (equippedWeapon != null)
         {
-            equippedWeapon.EnableDamage(); // Damage is enabled in the Weapon script, this should allow me easily to extend this to the bow, not just the sword
-            Invoke(nameof(StopAttack), 0.3f); // This is so attacks dont stack
+            equippedWeapon.EnableDamage();
+            Invoke(nameof(StopAttack), 0.3f);
         }
     }
 
@@ -37,45 +41,17 @@ public class playerStats : MonoBehaviour
         }
     }
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        curHealth = maxHealth; // Upon starting, the current health is equal to the max health
-        
-    }
-
-    public void TakeDamage(int damage) // Currently public but we will see what happens, if it ends up just being for the player it will stay public
+    public void TakeDamage(int damage)
     {
         curHealth -= damage;
-        Debug.Log(" <color = red>Player has taken damage, oh noes! very sad :((( current healthers is at uhhh" + curHealth); // Thank you for the colour robert!!!!!!!!!!!! 
+
+        Debug.Log("Player took damage: " + damage);
 
         if (curHealth <= 0)
         {
-            SpontaneousCombustion(); // This is my "Die" command
+            Debug.Log("Player died");
         }
     }
-
-    private void SpontaneousCombustion()
-    {
-        Debug.Log("you died!!! RIP"); // will add code to end game
-        Time.timeScale = 0f; // Sets the time scale to 0, effectively freezing the game, and being a game-over
-    }
-
-    private void PlayerAttack() 
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, transform.forward, out hit, attackRange)) // Where the raycast starts, and where the raycast ends as well as the range
-        {
-            MeleeEnemy enemyHealth = hit.collider.GetComponent<MeleeEnemy>();
-
-            if (enemyHealth != null)
-            {
-                Debug.Log("Enemy is being shot at!");
-                enemyHealth.TakeDamage(damage); // Enemy takes damage from the takedamage function above
-            }
-        }
-    } 
-
 }
 
 ////// HELPFUL SOURCES THAT I AM USING
